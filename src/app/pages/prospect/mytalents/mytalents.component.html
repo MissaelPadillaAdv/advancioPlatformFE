@@ -22,56 +22,136 @@
     </li>
 </ul>
 
+
 <div class="tab-content">
     <div class="tab-pane active" id="inProcess" role="tabpanel" aria-expanded="true" >
         <div class="container-fluid">
             <div class="row" *ngFor="let item of talentInProcess">
                 <div class="col-lg-12 col-xlg-9 col-md-12 mb-2">
-                        <a  data-bs-toggle="collapse" [href]="indicator+'p'+item.id" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
-                            <div class="card shadow" >
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-2 tex-center">
-                                            <div class="row">
-                                                <div class="col center">
-                                                    <img [src]="item.profilePic" [alt]="item.fullName" class="avatar profile-img">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col center">
-                                                    {{item.status}}
-                                                </div>
-                                            </div>
-                                           
-                                            
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="row">
-                                                <div class="col-7 app-font">{{ item.fullName }}</div>
-                                                <div class="col-3"> {{ item.country }} </div>
-                                                <div class="col-2">{{item.globalRaiting}}</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 app-font">{{ item.bio | slice: 0:200 }} {{ item.bio.length > 200 ? '...' : '' }} </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 app-font center row-container">
-                                                    <button>Reject</button>
-                                                    <button>Accept</button>
-                                                </div>
+                    <div class="card shadow card-heigth">
+                        <a  data-bs-toggle="collapse" [href]="indicator+'talent_'+item.idInProcess" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="title-card">
+                            <div class="card-title">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-4 col-sm-2 tex-center">
+                                        <div class="row">
+                                            <div class="col center">
+                                                <img [src]="item.profilePic" [alt]="item.fullName" class="avatar profile-img">
                                             </div>
                                         </div>
-                                        
+                                        <div class="row">
+                                            <div class="col center">
+                                                {{item.status}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    
-                                </div>
-                                <div class="card-footer collapse multi-collapse" [id]="'p'+item.id">
-                                    <div class="">
-                                        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                                    </div>
+                                    <div class="col-lg-10 col-md-4 col-sm-2">
+                                        <div class="row">
+                                            <div class="col-lg-7 col-md-7 col-sm-12 app-font card-text">{{ item.fullName }}</div>
+                                            <div class="col-lg-3 col-md-3 col-sm-12 app-font card-text"> {{ item.country }} </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-12 app-font card-text">{{item.globalRaiting}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-11 app-font text-danger position">{{ item.jobPositionName | titlecase }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 app-font text-color bio">{{ item.bio | slice: 0:200 }} {{ item.bio.length > 200 ? '...' : '' }} </div>
+                                        </div>
+                                    </div>                                        
                                 </div>    
                             </div>
                         </a>
+                        <div class="card-body">
+                            <div  class="row">
+                                <div class="col-12 app-font center row-container">
+                                    <button (click)="alert()">Reject</button>
+                                    <button (click)="alert()">Accept</button>
+                                </div>
+                            </div>                                                            
+                        </div>
+                        <div class="collapse multi-collapse" [id]="'talent_'+item.idInProcess">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <p class="text-danger position "> Description</p>
+                                </div>
+                                <div class="row">
+                                    <p class="app-font text-color bio"> {{item.bio}}</p>
+                                </div>
+                                <!-- Tech Stack -->
+                                <div class="row">
+                                    <p class="text-danger position"> Tech Stack</p>                            
+                                    <div class="row app-font" *ngIf="item.techStack.languages.length > 0">
+                                        <div class="row">
+                                            <p class="position app-font"> Programmin Languages</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2  col-4 techstack-tag" *ngFor="let language of item.techStack.languages">
+                                                {{ language }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row app-font" *ngIf="item.techStack.frameworks.length > 0">
+                                        <div class="row">
+                                            <p class="position app-font"> Frameworks</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-4 techstack-tag" *ngFor="let framework of item.techStack.frameworks">
+                                                <p class="techstack-tag">
+                                                    {{ framework }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row app-font" *ngIf="item.techStack.database.length > 0">
+                                        <div class="row">
+                                            <p class="position app-font "> Database</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-4 techstack-tag" *ngFor="let database of item.techStack.database">
+                                                {{ database }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Tech Stack -->
+                                <!-- General Info -->
+                                <div class="row">
+                                    <div class="col" *ngIf="item.modality">
+                                        <div class="row">
+                                            <p class="position text-danger"> Employment Type</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 app-font text-color ">
+                                                {{ item.modality }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col" *ngIf="item.dialects.esp || item.dialects.eng">
+                                        <div class="row">
+                                            <p class="position text-danger"> Languages</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12  col-4 app-font text-color" >
+                                                {{ item.dialects.esp ? 'Spanish ('+ item.dialects.esp +'),' : '' }}
+                                                {{ item.dialects.eng ? 'English ('+ item.dialects.eng +')' : '' }}
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                    <div class="col" *ngIf="item.location">                                
+                                        <div class="row">
+                                            <p class="position text-danger">Location</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-4 app-font text-color">
+                                                {{ item.location }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End General Info -->
+                            </div>
+                            
+                        </div>    
+                    </div>
                 </div>
             </div>
         </div>
