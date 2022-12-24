@@ -95,7 +95,7 @@ export class JobpositionsComponent implements OnInit {
 
   save(){
     this.formSubmitted = true;
-    this.setHideEvent();
+    this.clearValues();
     if (this.createForm.invalid) return console.log('Formulario con errores');
     const jobPosition = {
       id: this.jobPositionId,
@@ -109,7 +109,7 @@ export class JobpositionsComponent implements OnInit {
     }
 
   }
-  setHideEvent(){
+  clearValues(){
     const myModalEl = document.getElementById('exampleModal')
     myModalEl!.addEventListener('hidden.bs.modal', event => {
       this.createForm.reset({name: '', description: ''});

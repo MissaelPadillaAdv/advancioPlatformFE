@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { MatIconModule} from '@angular/material/icon';
 import { ComponentsModule } from '../components/components.module';
+import { WishlistsComponent } from './prospect/wishlists/wishlists.component';
 
 
 
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../components/components.module';
 @NgModule({
   declarations: [
     PagesComponent,
-    JobpositionsComponent
+    JobpositionsComponent,
+    WishlistsComponent
   ],
   imports: [
     CommonModule,

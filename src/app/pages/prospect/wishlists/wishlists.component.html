@@ -1,0 +1,260 @@
+<div class="row">
+    <div class="col-8 app-font">
+        <h1 class="title">Saved Talents</h1>
+
+    </div>
+    <div class="col-4">
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="text-danger add more-menu action-control" data-bs-toggle="modal" data-bs-target="#exampleModal" id="exampleModalbtn" (click)="isNew = true">
+            <mat-icon>add</mat-icon> Create new category
+        </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="text-danger add action-control" data-bs-toggle="modal" data-bs-target="#exampleModal" id="exampleModalbtn" (click)="isNew = false; getDataToModal()">
+            <mat-icon>edit</mat-icon> Change name
+        </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="text-danger add action-control" (click)="delete(currentId, currentName)">
+            <mat-icon>delete</mat-icon> Delete current list
+        </button>
+    </div>
+</div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs profile-tab " role="tablist"  *ngIf="!loadingTabs">
+    <li class="nav-item " *ngFor="let item of wishLists; let i = index">
+        <a class="nav-link text-danger app-font pane " 
+            data-toggle="tab" [href]="indicator + item.name"
+            role="tab" aria-expanded="true" 
+            [ngClass]="{'active': i == 0}"
+            (click)="getTalents(item.id); currentName = item.name"> 
+            {{ item.name}}
+        </a> 
+        
+    </li>
+</ul>
+<div class="tab-content" *ngIf="!loadingTabs">
+    <div class="tab-pane active"  role="tabpanel" aria-expanded="true" >
+        <div class="container-fluid">
+            <div class="row" *ngIf="!loading && talents.length > 0" >
+                <div class="col-lg-4 col-xlg-2 col-md-4 mb-2" *ngFor="let talentItem of talents">
+                    <div class="card shadow" >
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3"><img [src]="talentItem.profilePic" [alt]="talentItem.fullName" class="avatar"></div>
+                                <div class="col-7">
+                                    {{talentItem.fullName}}
+                                    <br>
+                                    <small class="text-danger">{{ talentItem.jobPosition}}</small>
+                                    <button class="btn btn-danger red">Request Talent</button>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" class="add visibility cursor"  data-bs-toggle="modal" data-bs-target="#talentModal" id="exampleModalbtn" (click)="showTalent(talentItem)">
+                                                <mat-icon class="cursor">visibility</mat-icon>
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="dropdown">
+                                                <button class="more-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../../../assets/three-dots-vertical.svg" alt="">
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item app-font cursor" (click)="removeTalent(talentItem.id, talentItem.fullName)"> <mat-icon>delete</mat-icon> Delete</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li *ngFor="let wishListItem of wishListsToMove">
+                                                        <a class="dropdown-item app-font cursor" (click)="moveTo(wishListItem.id, talentItem.id, talentItem.fullName, wishListItem.name)" >
+                                                            <mat-icon>arrow_circle_right</mat-icon>Move to {{wishListItem.name}} 
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="center">
+    <app-spinner [loading]="loading || loadingTabs" ></app-spinner>
+</div>
+
+<app-no-information-card [display]="(!loading  && !loadingTabs) && (wishLists.length <= 0 || talents.length <= 0)"></app-no-information-card>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modalTitle }}</h1>
+                <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="wishForm"  class="form-horizontal" (submit)="save()">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group  row"
+                                    [ngClass]="{'has-danger': !wishForm.get('name')?.value && formSubmitted}">
+                                    <div class="col-md-12">
+                                        <label for="title">Name *</label>
+                                        <input type="text" class="form-control" id="title"
+                                            placeholder="Name" formControlName="name">
+                                        <small class="form-control-feedback"
+                                            [ngClass]="{'form-control-danger': !wishForm.get('name')?.value && formSubmitted}"
+                                            *ngIf="!wishForm.get('name')?.value && formSubmitted">
+                                            The Field is required.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger red">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="talentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Talent Resume</h1>
+                <button id="closeTalent" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row p5">
+                    <div class="col-4">
+                        <img [src]="talent.profilePic ?? ''" [alt]="talent.fullName" class="avatar">
+                    </div>
+                    <div class="col-8">
+                        {{talent.fullName}}
+                        <br>
+                        <small class="text-danger">{{ talent.jobPosition ?? '' }}</small>
+                    </div>
+                </div>
+                <div *ngIf="talent.techStack">
+                    <div class="row">
+                        <h5>
+                            Tech Stack
+                        </h5>
+                    </div>
+                    <div class="row p5" *ngIf="talent.techStack.languages.length > 0">
+                        <div>
+                            <div class="row">                                    
+                                Programming Languages                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-2 techstack-tag" *ngFor="let language of talent.techStack.languages">
+                                    {{language}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p5" *ngIf="talent.techStack.frameworks.length > 0">
+                        <div>
+                            <div class="row">                                                                    
+                                Frameworks                                                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-2 techstack-tag" *ngFor="let framework of talent.techStack.frameworks">
+                                    {{ framework}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p5" *ngIf="talent.techStack.cloud.length > 0">
+                        <div>
+                            <div class="row">                                                                    
+                                Cloud Services                                                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-2 techstack-tag" *ngFor="let cloud of talent.techStack.cloud">
+                                    {{ cloud }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p5"  *ngIf="talent.techStack.database.length > 0">
+                        <div>
+                            <div class="row">                                                                    
+                                Database                                                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-2 techstack-tag" *ngFor="let database of talent.techStack.database">
+                                    {{ database }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p5" *ngIf="talent.techStack.extras.length > 0">
+                        <div>
+                            <div class="row">                                                                    
+                                Extras                                                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-2 techstack-tag" *ngFor="let extra of talent.techStack.extras">
+                                    {{ extra }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row p5" *ngIf="talent.yearsOfExp">
+                    <div>
+                        <div class="row">
+                            <h5>                                
+                                Years of Experience                                
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" >
+                                {{ talent.yearsOfExp }} years
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p5" *ngIf="talent.modality">
+                    <div>
+                        <div class="row">
+                            <h5>                                
+                                Modality                                
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" >
+                                {{ talent.modality}}
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row p5" *ngIf="talent.location">
+                    <div>
+                        <div class="row">
+                            <h5>                                
+                                Location                                
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" >
+                                {{ talent.location }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
