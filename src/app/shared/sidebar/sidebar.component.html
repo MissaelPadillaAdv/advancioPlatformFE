@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li [class]="item.css" *ngFor="let item of menuItems">
-                    <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute+item.url" routerLinkActive="active" aria-expanded="false">
+                    <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute+item.url" routerLinkActive="active">
                         <div class="row">
                             <div class="col-2"><mat-icon>{{ item.icon }} </mat-icon></div>
                             <div class="col-10 hide-menu">{{ item.menuName }}</div>

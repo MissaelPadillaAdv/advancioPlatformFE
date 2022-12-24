@@ -23,7 +23,10 @@ export class JobpositionService {
   private generateJobPositionCollection(collection: JobPositionModel[]): JobPositionModel[] {
     const jobPosition = collection.map(
       (r) =>
-        new JobPositionModel(
+       {
+        console.log(r)
+
+        return new JobPositionModel(
           r.id,
           r.name,
           r.username,
@@ -32,7 +35,7 @@ export class JobpositionService {
           r.talentCount,
           r.isActive,
           r.identityName    
-        )
+        )}
     );
     return jobPosition;
   }

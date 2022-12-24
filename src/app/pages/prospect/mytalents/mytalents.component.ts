@@ -30,4 +30,8 @@ export class MytalentsComponent implements OnInit {
     element?.setAttribute('display','inline')
     console.log()
   }
+
+  alert(){
+    window.alert('test');
+  }
 }

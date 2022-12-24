@@ -14,7 +14,7 @@ a{
     color: whitesmoke;
 }
 .app-font {
-    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-family: SequelSansMediumBody;
 }
 .more-menu{
     background: transparent;
@@ -108,4 +108,8 @@ a{
 }
 .cursor {
     cursor: pointer;
+}
+
+.text-color{
+    color :#B2B2B2
 }
