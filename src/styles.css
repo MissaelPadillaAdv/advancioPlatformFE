@@ -1,1 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a{
+    text-decoration: none !important;
+}
+
+.red {
+    background-color: rgb(212, 2, 47);
+    border-radius: 4px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    color: whitesmoke;
+}
+.app-font {
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+}
+.more-menu{
+    background: transparent;
+    border: none;
+}
+.add:hover{
+    cursor: pointer;
+}
+.center {
+    align-items: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.avatar {
+    width: 85%;
+    border-radius: 100%;
+}
+
+.card{
+    box-shadow: 2px 3px 10px #D8D8D8 !important;
+    border-radius: 4px !important;
+}
+.card:hover{
+    box-shadow: 2px 3px 20px #A2B5BB !important;
+}
+.title {
+    margin: 0px;
+    font-family: SequelSansMediumBody;
+    line-height: 1.167;
+    letter-spacing: -0.01562em;
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.pane{
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    max-width: 360px;
+    min-width: 90px;
+    position: relative;
+    min-height: 48px;
+    flex-shrink: 0;
+    padding: 12px 16px;
+    overflow: hidden;
+    white-space: normal;
+    text-align: center;
+    flex-flow: column wrap;
+    color: inherit;
+    display: flex;
+}
+.action-control{
+    background: transparent;
+    color: red;
+    border: none;
+    border-right: 1px solid #D8D8D8;
+}
+.action-control:hover{
+    background: transparent;
+    color: red;
+    border: none;
+    border-right: 1px solid #D8D8D8;
+    box-shadow: 2px 3px 20px #A2B5BB !important;
+}
+.profile-tab li a.nav-link.active{
+    border-bottom: 2px solid rgb(212, 0, 47);
+}
+.btn-group {
+    margin-right: 5px;
+}
+.cursor {
+    cursor: pointer;
+}

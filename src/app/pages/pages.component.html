@@ -1,0 +1,18 @@
+<div id="main-wrapper">
+
+    <app-header></app-header>
+
+    <app-sidebar (loading)="loading = !loading"></app-sidebar>
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <!-- Mi sistema de rutas -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="pre-loader" *ngIf="loading">
+        <div class="_loader">
+            <img src="../../assets/logoAdvancio.36071a53.svg" class="_loader__figure" alt="Advancio" >
+        </div>
+    </div>
+</div>
