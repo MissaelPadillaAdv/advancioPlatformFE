@@ -9,6 +9,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { MatIconModule} from '@angular/material/icon';
 import { ComponentsModule } from '../components/components.module';
 import { WishlistsComponent } from './prospect/wishlists/wishlists.component';
+import { MytalentsComponent } from './prospect/mytalents/mytalents.component';
 
 
 
@@ -17,7 +18,8 @@ import { WishlistsComponent } from './prospect/wishlists/wishlists.component';
   declarations: [
     PagesComponent,
     JobpositionsComponent,
-    WishlistsComponent
+    WishlistsComponent,
+    MytalentsComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import { WishlistsComponent } from './prospect/wishlists/wishlists.component';
     ReactiveFormsModule,
     AngularEditorModule,
     MatIconModule,
-    ComponentsModule
+    ComponentsModule,
   ]
 })
 export class PagesModule { }

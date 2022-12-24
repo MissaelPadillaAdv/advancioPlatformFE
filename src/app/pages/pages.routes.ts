@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { JobpositionsComponent } from './prospect/jobpositions/jobpositions.component';
 import { WishlistsComponent } from './prospect/wishlists/wishlists.component';
+import { MytalentsComponent } from './prospect/mytalents/mytalents.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       {path: 'WishList', component: WishlistsComponent},
       {path: 'MyJobPositions', component: JobpositionsComponent},
+      {path: 'MyTalent', component: MytalentsComponent},
       { path: '', redirectTo: 'WishList', pathMatch: 'full' },
     ]
   }

@@ -1,0 +1,15 @@
+.row-container {
+   padding-top: 5px;
+}
+
+@media(min-width: 900px) {
+    .profile-img{
+        width: 50%;
+        height: auto;
+        align-items: top !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+}

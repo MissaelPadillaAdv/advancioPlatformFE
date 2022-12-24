@@ -9,23 +9,28 @@
             <ul id="sidebarnav">
                 <li>
                     <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute" aria-expanded="false">
-                        <span>
-                            <mat-icon>home</mat-icon>
-                        </span>
-                        <span class="hide-menu space"> Home </span> 
+                        <div class="row">
+                            <div class="col-2"><mat-icon>home</mat-icon></div>
+                            <div class="col-10 hide-menu"> Home</div>
+                        </div>
+                        
                     </a>
                 </li>
                 <li [class]="item.css" *ngFor="let item of menuItems">
                     <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute+item.url" aria-expanded="false">
-                        <mat-icon>{{ item.icon }} </mat-icon>
-                        <span class="hide-menu">{{item.menuName}}</span>
+                        <div class="row">
+                            <div class="col-2"><mat-icon>{{ item.icon }} </mat-icon></div>
+                            <div class="col-10 hide-menu">{{ item.menuName }}</div>
+                        </div>
                     </a>
                     <ul>
                         <li *ngFor="let subItem of item.subMenu">
                             <a [routerLink]="mainRoute+subItem.url" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}" class="text-danger">
-                                <mat-icon>{{ subItem.icon }}</mat-icon>
-                                <span>{{subItem.menuName}}</span>
+                                <div class="row">
+                                    <div class="col-2"><mat-icon>{{ subItem.icon }} </mat-icon></div>
+                                    <div class="col-10 hide-menu">{{ subItem.menuName }}</div>
+                                </div>
                             </a>
                         </li>
                     </ul>
@@ -33,6 +38,8 @@
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
+        <div class="hide-menu">TExt</div>
+        <div class="hide-menu">TExt 2</div>
     </div>
     <!-- End Sidebar scroll-->
 </aside>
