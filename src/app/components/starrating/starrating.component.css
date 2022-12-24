@@ -1,0 +1,28 @@
+.star-rating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0px !important;
+    margin-left: 0px !important;
+    padding-left: 15px !important;
+}  
+
+.star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: 0.05em 0.05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.filled {
+    color: #666;
+}
+
+.paddign-ul{
+    margin: 0px;
+    margin-left: 0px;
+    padding-left: 15px;
+}

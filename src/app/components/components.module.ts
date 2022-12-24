@@ -4,6 +4,7 @@ import { JobpositioncardComponent } from './jobpositioncard/jobpositioncard.comp
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NoInformationCardComponent } from './no-information-card/no-information-card.component';
+import { StarratingComponent } from './starrating/starrating.component';
 
 
 
@@ -11,7 +12,8 @@ import { NoInformationCardComponent } from './no-information-card/no-information
   declarations: [
     JobpositioncardComponent,
     SpinnerComponent,
-    NoInformationCardComponent
+    NoInformationCardComponent,
+    StarratingComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { NoInformationCardComponent } from './no-information-card/no-information
   exports: [
     JobpositioncardComponent,
     SpinnerComponent,
-    NoInformationCardComponent
+    NoInformationCardComponent,
+    StarratingComponent
   ]
 })
 export class ComponentsModule { }

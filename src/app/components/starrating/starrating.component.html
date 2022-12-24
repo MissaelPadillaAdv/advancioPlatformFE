@@ -1,0 +1,9 @@
+
+
+<ul class="start-rating paddign-ul">
+    <li *ngFor="let item of starQty; let i = index " class="star" [ngClass]="{'filled': i + 1 === globalRaiting}">
+        &#9733;
+    </li>
+</ul>
+
+

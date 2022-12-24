@@ -4,6 +4,9 @@
     </div>
 </div>
 
+
+
+
 <ul class="nav nav-tabs profile-tab " role="tablist">
     <li class="nav-item ">
         <a class="nav-link active text-danger app-font pane " 
@@ -23,8 +26,9 @@
 </ul>
 
 
+
 <div class="tab-content">
-    <div class="tab-pane active" id="inProcess" role="tabpanel" aria-expanded="true" >
+    <div class="tab-pane active" id="inProcess" role="tabpanel" aria-expanded="true"  *ngIf="!loading  && talentInProcess.length > 0 ">
         <div class="container-fluid">
             <div class="row" *ngFor="let item of talentInProcess">
                 <div class="col-lg-12 col-xlg-9 col-md-12 mb-2">
@@ -46,9 +50,22 @@
                                     </div>
                                     <div class="col-lg-10 col-md-4 col-sm-2">
                                         <div class="row">
-                                            <div class="col-lg-7 col-md-7 col-sm-12 app-font card-text">{{ item.fullName }}</div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12 app-font card-text">{{ item.fullName }}</div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 app-font card-text"> {{ item.country }} </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-12 app-font card-text">{{item.globalRaiting}}</div>
+                                            <div class="col-lg-4 col-md-3 col-sm-12 app-font">
+                                                <div class="row">
+                                                    <div class="col-6"> 
+                                                        <div class="float-right">
+                                                            <app-starrating></app-starrating>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6"> 
+                                                        <div class="float-left text-color app-font">
+                                                            {{ item.raitingCount > 99 ? '(+99)' : '(' + item.raitingCount + ')'}}
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                                                   
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-11 app-font text-danger position">{{ item.jobPositionName | titlecase }}</div>
@@ -156,7 +173,7 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane" id="myTeams" role="tabpanel" aria-expanded="true" >
+    <div class="tab-pane" id="myTeams" role="tabpanel" aria-expanded="true"  *ngIf="!loading  && talentInProcess.length > 0 ">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-xlg-2 col-md-4 mb-2">
@@ -170,3 +187,10 @@
         </div>
     </div>
 </div>
+
+<div class="center">
+    <app-spinner [loading]="loading" ></app-spinner>
+</div>
+
+<app-no-information-card [display]="!loading  && talentInProcess.length <= 0 "></app-no-information-card>
+

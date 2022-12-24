@@ -10,6 +10,8 @@ export class MytalentsComponent implements OnInit {
 
   public talentInProcess: any[] = [];
   public indicator: string = '#';
+  public loading = true; 
+
 
   constructor(private myTalentService: MytalentsService) { 
     this.getTalentInProcess();
@@ -22,6 +24,7 @@ export class MytalentsComponent implements OnInit {
     this.myTalentService.getTalentInProcess().subscribe( (resp: any) => {
       this.talentInProcess = resp.items;
       console.log(this.talentInProcess)
+      this.loading = false;
     })
   }
 
