@@ -1,0 +1,49 @@
+<div class="card" style="height: 85%; cursor: pointer;" >
+    <div class="row g-0">
+        <div class="col-md-12 col-sm-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10 col-sm-8 app-font">
+                        {{identityName}}                                                                         
+                    </div>
+                    <div class="col-md-2 col-sm-4" >
+                        <div class="dropdown">
+                            <button class="more-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../../../assets/three-dots-vertical.svg" alt="">
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item app-font" (click)="delete(id)">
+                                    <mat-icon>delete</mat-icon>Delete</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item app-font" (click)="edit()"> <mat-icon>edit</mat-icon> Edit</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item app-font" (click)="closeOpenJobPosition(isOpen)" *ngIf="isOpen"> 
+                                        <mat-icon >cancel</mat-icon>
+                                        Close job position
+                                    </a>
+                                    <a class="dropdown-item app-font" (click)="closeOpenJobPosition(isOpen)" *ngIf="!isOpen"> 
+                                        <mat-icon >check_circle</mat-icon> 
+                                        Open job position
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-danger app-font">
+                        {{assineeUsername}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 row-card app-font" [id]="identityName" >
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>                        
+    </div>
+</div>
