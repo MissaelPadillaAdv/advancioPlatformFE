@@ -8,7 +8,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li>
-                    <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute" aria-expanded="false">
+                    <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute" routerLinkActive="active" aria-expanded="false">
                         <div class="row">
                             <div class="col-2"><mat-icon>home</mat-icon></div>
                             <div class="col-10 hide-menu"> Home</div>
@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li [class]="item.css" *ngFor="let item of menuItems">
-                    <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute+item.url" aria-expanded="false">
+                    <a class="waves-effect waves-dark text-danger" [routerLink]="mainRoute+item.url" routerLinkActive="active" aria-expanded="false">
                         <div class="row">
                             <div class="col-2"><mat-icon>{{ item.icon }} </mat-icon></div>
                             <div class="col-10 hide-menu">{{ item.menuName }}</div>
@@ -29,7 +29,7 @@
                                 [routerLinkActiveOptions]="{exact: true}" class="text-danger">
                                 <div class="row">
                                     <div class="col-2"><mat-icon>{{ subItem.icon }} </mat-icon></div>
-                                    <div class="col-10 hide-menu">{{ subItem.menuName }}</div>
+                                    <div class="col-10 ">{{ subItem.menuName }}</div>
                                 </div>
                             </a>
                         </li>
@@ -38,8 +38,28 @@
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
-        <div class="hide-menu">TExt</div>
-        <div class="hide-menu">TExt 2</div>
+        <div class="hide-menu">
+            <div class="container-fluid no-padding">
+                <div class="card sidebar-card">
+                    <div class="card-body">
+                        <div class="row"><img src="../../../assets/talent-cover.83b76330.png" alt="Advancio Platform"></div>
+                        <div class="row text-center">Not sure what kind of tech talent do you need?</div>
+                        <div class="row"><button class="btn btn-danger red">Take a test to discover</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid no-padding">
+                <div class="card sidebar-card">
+                    <div class="card-body">
+                        <div class="row">Invite yout co-worker to Advancio Platform</div>
+                        <div class="row">Sent Invite</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <small><a href="https://www.advancio.com/" target="_blank" class="advancio-link">www.Advancio.com</a></small>
+            </div>
+        </div>
     </div>
     <!-- End Sidebar scroll-->
 </aside>
